@@ -1,0 +1,43 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome!</title>
+</head>
+<body>
+
+<p >
+    {% if request.user.is_authenticated %}
+    <div  class="alert alert-success text-center" role="alert">
+        Hello {{ request.user.username }}
+      </div>
+    {% else %}
+      <div class="alert alert-success text-center" role="alert">
+        Hello anonymous user
+      </div>
+    {% endif %}
+</p>
+<a href="{% url 'new' %}" class=" btn btn-warning btn-lg active" role="button" aria-pressed="true">Create Meeting</a>
+
+<!--<h1> welcome</h1>-->
+<!--this is a course from <a href="https://www.google.com/"> google</a>-->
+<!--<p> there are {{num_meetings }} in database</p>-->
+
+
+<div class="container text-center">
+<div class="col-10 offst4 text-center" >
+    {% for meeting in meetings %}
+    <div class="card mt-3 ">
+        <div class="card-header">
+         <a href="/meetings/{{ meeting.id }}"><h4> {{ meeting.title}}</h4></a>
+        </div>
+        {% endfor %}
+        </div>
+</body>
+</html>
+{% endblock %}
